@@ -19,7 +19,7 @@ class Server {
    * @return {Object} connect
    */
   dbConnect () {
-    const host = 'mongodb://localhost:27017/checko'
+    const host = 'mongodb://localhost:27017/checo'
     const connect = mongoose.createConnection(host)
 
     connect.on('error', (err) => {
@@ -65,7 +65,7 @@ class Server {
   routes () {
     // Users
     new routes.users.Create(this.app, this.connect)
-    // new routes.users.Show(this.app, this.connect)
+    new routes.users.Show(this.app, this.connect)
     // new routes.users.Update(this.app, this.connect)
     // new routes.users.Delete(this.app, this.connect)
 
