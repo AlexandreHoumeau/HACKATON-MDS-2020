@@ -12,6 +12,7 @@ const path = require('path')
 class Server {
   constructor () {
     this.app = express()
+    this.port = 3000
   }
 
   /**
@@ -53,8 +54,18 @@ class Server {
    */
   middleware () {
     this.app.use(express.static(path.join(__dirname, 'public')))
-    this.app.engine('hbs', exphbs())
-    this.app.set('view engine', 'hbs')
+    this.app.engine('.hbs', exphbs({
+      extname: '.hbs',
+      defaultLayout: 'main', 
+      layoutsDir: __dirname + '/views/layouts/',
+      partialsDir: __dirname + '/views/partials/'
+    }))
+    this.app.set('views', __dirname + '/views');
+    this.app.set('view engine', '.hbs')
+    // app.get('../public/css/bootstrap.min.css', function(req, res){ res.send('css/styles.css'); res.end(); });
+    this.app.get('/', (_, res) => 
+    res.render('home', {title: 'Accueil'})
+  )
     this.app.use(bodyParser.urlencoded({ 'extended': true }))
     this.app.use(bodyParser.json())
   }
@@ -86,7 +97,7 @@ class Server {
       this.dbConnect()
       this.middleware()
       this.routes()
-      this.app.listen(3000)
+      this.app.listen(this.port, () => console.log(`Server is listening on port ${this.port} and dirname is ${__dirname}`))
     } catch (err) {
       console.error(`[ERROR] Server -> ${err}`)
     }
