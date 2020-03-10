@@ -53,19 +53,18 @@ class Server {
    * middleware
    */
   middleware () {
-    this.app.use(express.static(path.join(__dirname, 'public')))
+    this.app.use('/public', express.static(path.join(__dirname, '../public')))
     this.app.engine('.hbs', exphbs({
       extname: '.hbs',
       defaultLayout: 'main', 
-      layoutsDir: __dirname + '/views/layouts/',
-      partialsDir: __dirname + '/views/partials/'
+      layoutsDir: path.join(__dirname, '/views/layouts/'),
+      partialsDir: path.join(__dirname, '/views/partials/')
     }))
-    this.app.set('views', __dirname + '/views');
+    this.app.set('views', path.join(__dirname, '/views'))
     this.app.set('view engine', '.hbs')
-    // app.get('../public/css/bootstrap.min.css', function(req, res){ res.send('css/styles.css'); res.end(); });
     this.app.get('/', (_, res) => 
-    res.render('home', {title: 'Accueil'})
-  )
+      res.render('home', {res: res})
+    )
     this.app.use(bodyParser.urlencoded({ 'extended': true }))
     this.app.use(bodyParser.json())
   }
