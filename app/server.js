@@ -2,7 +2,7 @@ const express = require('express')
 const routes = require('./controllers/routes.js')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-
+const path = require('path')
 /**
  * Server
  * @Class
@@ -42,7 +42,6 @@ class Server {
         process.exit(0)
       })
     })
-
     return connect
   }
 
@@ -70,6 +69,10 @@ class Server {
     new routes.articles.UpdateArticle(this.app, this.connect)
     new routes.articles.DeleteArticle(this.app, this.connect)
     new routes.articles.ListArticle(this.app, this.connect)
+
+    // this.app.get('/home', function (req, res) {
+    //   res.sendFile(path.resolve('views/login.html'))
+    // })
 
     this.app.use((req, res) => {
       res.status(404).json({
