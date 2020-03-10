@@ -62,7 +62,13 @@ class Server {
     new routes.users.Create(this.app, this.connect)
     new routes.users.Show(this.app, this.connect)
     new routes.users.Update(this.app, this.connect)
-    // new routes.users.Delete(this.app, this.connect)
+    new routes.users.Delete(this.app, this.connect)
+
+    // articles
+    new routes.articles.CreateArticle(this.app, this.connect)
+    // new routes.articles.ShowArticle(this.app, this.connect)
+    // new routes.articles.UpdateArticle(this.app, this.connect)
+    // new routes.articles.DeleteArticle(this.app, this.connect)
 
     this.app.use((req, res) => {
       res.status(404).json({
