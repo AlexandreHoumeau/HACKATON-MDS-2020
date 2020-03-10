@@ -2,6 +2,8 @@ const express = require('express')
 const routes = require('./controllers/routes.js')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
+const path = require('path')
 
 /**
  * Server
@@ -50,6 +52,9 @@ class Server {
    * middleware
    */
   middleware () {
+    this.app.use(express.static(path.join(__dirname, 'public')))
+    this.app.engine('hbs', exphbs())
+    this.app.set('view engine', 'hbs')
     this.app.use(bodyParser.urlencoded({ 'extended': true }))
     this.app.use(bodyParser.json())
   }
@@ -64,7 +69,7 @@ class Server {
     // new routes.users.Update(this.app, this.connect)
     // new routes.users.Delete(this.app, this.connect)
 
-    this.app.use((req, res) => {
+    this.app.use((_, res) => {
       res.status(404).json({
         'code': 404,
         'message': 'Not Found'
