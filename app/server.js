@@ -66,7 +66,7 @@ class Server {
     // Users
     new routes.users.Create(this.app, this.connect)
     new routes.users.Show(this.app, this.connect)
-    // new routes.users.Update(this.app, this.connect)
+    new routes.users.Update(this.app, this.connect)
     // new routes.users.Delete(this.app, this.connect)
 
     this.app.use((_, res) => {
