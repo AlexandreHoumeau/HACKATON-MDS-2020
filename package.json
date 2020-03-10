@@ -6,10 +6,10 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn install && yarn start",
-    "start": "eslint ./app/* index.js --no-error-on-unmatched-pattern ./app/views/*  && node index.js",
-    "dev": "eslint ./app/* index.js --no-error-on-unmatched-pattern ./app/views/* && nodemon index.js",
+    "start": "eslint ./app/* index.js --no-error-on-unmatched-pattern ./app/views/  && node index.js",
+    "dev": "eslint ./app/* index.js --no-error-on-unmatched-pattern ./app/views/ && nodemon index.js",
     "test": "mocha",
-    "lint": "eslint ./app/* index.js --no-error-on-unmatched-pattern ./app/views/*"
+    "lint": "eslint ./app/* index.js --no-error-on-unmatched-pattern ./app/views/"
   },
   "dependencies": {
     "body-parser": "1.18.3",
