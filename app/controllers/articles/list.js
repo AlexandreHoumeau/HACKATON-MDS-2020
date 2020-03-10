@@ -5,30 +5,38 @@ const jwt = new JWT()
  * Create
  * @class
  */
-class Update {
+class Show {
   constructor (app, connect) {
     this.app = app
     this.ArticleModel = connect.model('Article', Article)
     this.run()
   }
+
   /**
    * middleware
    */
   middleware () {
-    this.app.put('/article/update/:id', jwt.express(), (req, res) => {
-      const { id } = req.params
-      const { body } = req
-
-      this.ArticleModel.findByIdAndUpdate(id, body, {new: true}).then(article => {
-        res.status(200).json(article || {})
-      }).catch(err => {
+    this.app.get('/article/list/', jwt.express(), (req, res) => {
+      try {
+        this.ArticleModel.find({}, function (err, result) {
+          if (err) {
+            res.status(500).json({
+              'code': 500,
+              'message': err
+            })
+          } else {
+            res.status(200).json(result)
+          }
+        })
+      } catch (err) {
         res.status(500).json({
           'code': 500,
           'message': err
         })
-      })
+      }
     })
   }
+
   /**
    * run
    */
@@ -37,4 +45,4 @@ class Update {
   }
 }
 
-module.exports = Update
+module.exports = Show
