@@ -7,6 +7,7 @@ const Update = require('./users/update.js')
 // Articles
 const CreateArticle = require('./articles/create')
 const ShowArticle = require('./articles/show')
+const ListArticle = require('./articles/list')
 const UpdateArticle = require('./articles/update')
 const DeleteArticle = require('./articles/delete')
 
@@ -21,6 +22,7 @@ module.exports = {
     CreateArticle,
     ShowArticle, 
     UpdateArticle,
-    DeleteArticle
+    DeleteArticle,
+    ListArticle
   }
 }
