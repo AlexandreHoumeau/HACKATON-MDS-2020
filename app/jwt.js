@@ -1,7 +1,7 @@
 const CryptoJS = require('crypto-js')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-mongoose.connect('mongodb://localhost/facebook-api', function (err) {
+mongoose.connect('mongodb://localhost/checo', function (err) {
   if (err) {
     console.log(err)
   }
