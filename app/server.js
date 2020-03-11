@@ -71,16 +71,17 @@ class Server {
     }))
     this.app.set('views', path.join(__dirname, '/views'))
     this.app.set('view engine', '.hbs')
+
+    this.app.use(bodyParser.urlencoded({ 'extended': true }))
+    this.app.use(bodyParser.json())
+
     this.app.get('/home', async (_, res) => {
       const articles = await this.fecthArticle()
       res.render('home', {res: articles})
     })
-
-    // this.app.get('/article/add', (_, res) => {
-    //   res.render('article-add')
-    // })
-    this.app.use(bodyParser.urlencoded({ 'extended': true }))
-    this.app.use(bodyParser.json())
+    this.app.get('/article-add', async (_, res) => {
+      res.render('article-add')
+    })
   }
 
   /**
