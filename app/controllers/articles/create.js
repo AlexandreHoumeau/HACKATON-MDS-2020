@@ -20,7 +20,8 @@ class Create {
     this.app.post('/article/create', async (req, res) => {
       try {
         const articleModel = new this.ArticleModel(req.body)
-        await articleModel.generateAdmin(req.headers['token'], this.UserModel)
+        // await articleModel.generateAdmin(req.headers['token'], this.UserModel)
+        articleModel.save()
         res.status(201).send({articleModel})
       } catch (err) {
         res.status(500).json({

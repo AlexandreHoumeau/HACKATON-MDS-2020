@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
 UserSchema.methods.generateAdmin = async function (tk, userModel) {
   // Generate an admin from token
   const article = this
-  const user = await userModel.findOne({token: tk}, (err, collection) => {
+  const user = await userModel.findOne({token: tk}, async (err, collection) => {
     if (err) {
       return err
     }
