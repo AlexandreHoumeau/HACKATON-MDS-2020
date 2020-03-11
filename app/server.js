@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const path = require('path')
+var fetch = require('node-fetch')
 
 /**
  * Server
@@ -13,6 +14,15 @@ class Server {
   constructor () {
     this.app = express()
     this.port = 3000
+  }
+
+  fecthArticle () {
+    const article = fetch('http://localhost:3000/article/list/')
+      .then(response => response.json())
+      .then(data => {
+        return data
+      })
+    return article
   }
 
   /**
@@ -61,9 +71,14 @@ class Server {
     }))
     this.app.set('views', path.join(__dirname, '/views'))
     this.app.set('view engine', '.hbs')
-    this.app.get('/', (_, res) => 
-      res.render('home', {res: res})
-    )
+    this.app.get('/home', async (_, res) => {
+      const articles = await this.fecthArticle()
+      res.render('home', {res: articles})
+    })
+
+    // this.app.get('/article/add', (_, res) => {
+    //   res.render('article-add')
+    // })
     this.app.use(bodyParser.urlencoded({ 'extended': true }))
     this.app.use(bodyParser.json())
   }

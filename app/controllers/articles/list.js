@@ -1,6 +1,6 @@
 const Article = require('../../models/article')
-const JWT = require('../../jwt.js')
-const jwt = new JWT()
+// const JWT = require('../../jwt.js')
+// const jwt = new JWT()
 /**
  * Create
  * @class
@@ -16,7 +16,7 @@ class Show {
    * middleware
    */
   middleware () {
-    this.app.get('/article/list/', jwt.express(), (req, res) => {
+    this.app.get('/article/list/', (req, res) => {
       try {
         this.ArticleModel.find({}, function (err, result) {
           if (err) {
