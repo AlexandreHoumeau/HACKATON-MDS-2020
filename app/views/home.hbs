@@ -1,37 +1,45 @@
-<div class="container">
-  <div class="jumbotron mt-3">
-    <h1 class="display-3">Bienvenue sur Sheco !</h1>
-    <p class="lead">Nous mettons en relation les personnes préférant donner leur nourriture et fournitures plutôt que de
-      les gaspiller !</p>
-    <hr class="my-4" />
-    <p>Que recherchez-vous ?</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Voir nos articles</a>
-    </p>
-  </div>
-  <h2>Nos articles</h2>
+<h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Les demandes</h1>
+<div class="container-fluid" style="width: 90%">
   <div class="row">
     {{#each res}}
-    <div class="col-md-4">
-      <div class="card bg-light mb-3">
-        <div class="card-header text-center">
-          <strong>{{categories}}</strong>
-          <br />
-        </div>
+    <div class="col-md-4 tab-article mb-3">
+      <a data-toggle="modal" data-toggle="modal" data-target="#myModal{{res}}">
+        <div class="card bg-light mb-3 ">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyR4QwIXhJlocX7-c_YAsW0WrLEyMsmIriKiHBjbtj0nQo3Ph-"
-          alt="Image de l'article" style="height: 200px; width: 100%; display: block;" />
-        <div class="card-body">
-          <h4 class="card-title">
+          src="{{photo}}"
+          alt="Image de l'article" style="display: block;" class="image-fluid img-article"/>
+        <div class="card-body text-white">
+          <h4 class="card-title" >
             {{title}}
           </h4>
           <p class="card-text">
             {{description}}
           </p>
-          <a href="#" class="btn btn-secondary">En savoir plus !</a>
         </div>
       </div>
+      </a>
     </div>
     {{/each}}
+  </div>
+</div>
+
+ <!-- Modal -->
+<div class="modal fade" id="myModal{{@res}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <img class="card-img-top" src="{{photo}}" alt="Card image cap">
+            {{{description}}}
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn  btn-outline-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
