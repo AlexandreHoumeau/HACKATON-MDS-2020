@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="public/css/app.css" type="text/css">
 </head>
 <body>
-  {{#each css}}
-  <h5>/css/{{this}}</h5>
-  {{/each}}
   {{> _header }}
+  <div class="container">
   {{{body}}}
+  </div>
   {{> _footer }}
-  {{#each js}}
-    <script src="/js/{{this}}"></script>
-  {{/each}}
+  <script src="public/js/jquery.min.js"></script>
+  <script src="public/js/bootstrap.min.js"></script>
+  <script src="public/js/popper.min.js"></script>
+
 </body>
 </html>
