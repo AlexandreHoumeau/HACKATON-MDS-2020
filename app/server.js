@@ -45,7 +45,6 @@ class Server {
         process.exit(0)
       })
     })
-
     return connect
   }
 
