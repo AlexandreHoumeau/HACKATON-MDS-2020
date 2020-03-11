@@ -2,6 +2,7 @@ const express = require('express')
 const routes = require('./controllers/routes.js')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
 const path = require('path')
 /**
  * Server
@@ -10,6 +11,7 @@ const path = require('path')
 class Server {
   constructor () {
     this.app = express()
+    this.port = 3000
   }
 
   /**
@@ -49,6 +51,19 @@ class Server {
    * middleware
    */
   middleware () {
+    this.app.use(express.static(path.join(__dirname, 'public')))
+    this.app.engine('.hbs', exphbs({
+      extname: '.hbs',
+      defaultLayout: 'main', 
+      layoutsDir: path.resolve('/views/layouts/'),
+      partialsDir: path.resolve('/views/partials/')
+    }))
+    this.app.set(path.resolve('views', '/views'))
+    this.app.set('view engine', '.hbs')
+    // app.get('../public/css/bootstrap.min.css', function(req, res){ res.send('css/styles.css'); res.end(); });
+    this.app.get('/', (_, res) => 
+      res.render('home', {title: 'Accueil'})
+    )
     this.app.use(bodyParser.urlencoded({ 'extended': true }))
     this.app.use(bodyParser.json())
   }
@@ -91,7 +106,7 @@ class Server {
       this.dbConnect()
       this.middleware()
       this.routes()
-      this.app.listen(3000)
+      this.app.listen(this.port, () => console.log(`Server is listening on port ${this.port} and dirname is ${__dirname}`))
     } catch (err) {
       console.error(`[ERROR] Server -> ${err}`)
     }
