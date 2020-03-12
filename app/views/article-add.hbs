@@ -27,7 +27,7 @@
       </textarea>
       </div>
     </div>
-    <button class="btn btn-primary col-12" type="submit" id='submityes' {{!--  onclick="window.location.href = 'http://localhost:3000/home';" --}}>Créer l'article</button>
+    <button class="btn col-12 btn-lg green-color white-font " type="submit" id='submityes' >Créer l'article</button>
 </div>
 </form>
 <script>
@@ -51,6 +51,7 @@
             url: "http://localhost:3000/article/create",
             data: $('#form-element').serialize(),
             success: function (res) {
+                
                 window.location.replace(submityesClicked ? "http://localhost:3000/home" : "http://localhost:3000/article-add");
             },
             error: function () {
