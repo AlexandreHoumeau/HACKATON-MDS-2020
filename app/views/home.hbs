@@ -37,9 +37,10 @@
           <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
           <div class="card-body text-white">
             <h4 class="card-title">
-              {{title}} disponible dès le {{{ dateFormat date_time "dddd, MMMM Do YYYY"}}}
+              {{title}}
             </h4>
-            <p>{{name}}</p>
+            <p style="">{{{ dateFormat date_time "dddd, MMMM Do YYYY"}}}</p>
+            <p>{{first_name}} {{last_name}}</p>
             <p class="card-text" style="">
               {{description}}
             </p>
