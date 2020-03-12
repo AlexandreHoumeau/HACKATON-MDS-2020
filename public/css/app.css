@@ -57,9 +57,10 @@ span.rating i {
 }
 
 .btn-nav {
+  width: 100%;
   border: 2px solid #aacbad;
   padding: 10px;
-  margin-right: 16px;
+  margin-right: 20px;
   border-radius: 22px;
   box-shadow: 5px 2px 10px #CBC8C8;
 }

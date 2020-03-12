@@ -89,10 +89,15 @@ class Server {
     //   res.render('show-article', {res: res})
     // })
 
-    this.app.post(`/article-show/:id`, async (request, response) => {
-      const id = request.params.id
-      const article = await this.showArtice(id)
-      response.render('show-article', {res: article})
+    // this.app.post(`/article-show/:id`, async (request, response) => {
+    //   const id = request.params.id
+    //   const article = await this.showArtice(id)
+    //   response.render('show-article', {res: article})
+    // })
+
+    this.app.get('/reservations', async (request, response) => {
+      const articles = await this.fecthArticle()
+      response.render('my-articles', {res: articles})
     })
 
     this.app.use(bodyParser.urlencoded({ 'extended': true }))
