@@ -1,35 +1,79 @@
-<div class="jumbotron mt-3">
-  <h1 class="display-3">Bienvenue sur Sheco !</h1>
-  <p class="lead">Nous mettons en relation les personnes préférant donner leur nourriture et fournitures plutôt que de
-    les gaspiller !</p>
-  <hr class="my-4" />
-  <p>Que recherchez-vous ?</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Voir nos articles</a>
-  </p>
-</div>
-<h2>Nos articles</h2>
-<div class="row">
-  {{#each res}}
-  <div class="col-md-4">
-    <div class="card bg-light mb-3">
-      <div class="card-header text-center">
-        <strong>{{categories}}</strong>
-        <br />
-      </div>
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyR4QwIXhJlocX7-c_YAsW0WrLEyMsmIriKiHBjbtj0nQo3Ph-"
-        alt="Image de l'article" style="height: 200px; width: 100%; display: block;" />
-      <div class="card-body">
-        <h4 class="card-title">
-          {{title}}
-        </h4>
-        <p class="card-text">
-          {{description}}
-        </p>
-        <a href="#" class="btn btn-secondary">En savoir plus !</a>
-      </div>
+<h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Les demandes</h1>
+<div class="container-fluid" style="width: 90%">
+  <div class="row">
+    {{#each res}}
+    {{#if type}}
+    <div class="col-md-4 tab-article mb-5">
+      <a>
+        <div class="card bg-light mb-3 ">
+          <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
+          <div class="card-body text-white">
+            <img style="float: left; margin-top:10" class="avatar mr-1" src="{{logo}}" alt="">
+            <h4 class="card-title">
+              {{title}}
+            </h4>
+            <p class="card-text">
+              {{description}}
+            </p>
+          </div>
+        </div>
+      </a>
     </div>
+    {{/if}}
+    {{/each}}
   </div>
-  {{/each}}
 </div>
+
+<h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Les Dons</h1>
+<div class="container-fluid" style="width: 90%">
+  <div class="row">
+    {{#each res}}
+    {{#unless type}}
+    {{#unless transaction}}
+    <div class="col-md-4 tab-article mb-3">
+      <a data-toggle="modal" data-toggle="modal" data-target="#myModal">
+        <div class="card bg-light mb-3 ">
+          <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
+          <div class="card-body text-white">
+            <h4 class="card-title">
+              {{title}}
+            </h4>
+            <p>{{name}}</p>
+            <p class="card-text">
+              {{description}}
+              <button id="{{id}}" style="float: right; border: 1px solid black;color:white;background-color:black" class="btn">Je reserve</button>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {{/unless}}
+    {{/unless}}
+    {{/each}}
+  </div>
+</div>
+
+<script>
+  $(function () {
+    var submityesClicked;
+    //catch the click to buttons
+    $(':button').click(function () {
+      var id = $(this).attr('id')
+      console.log(id)
+      $.ajax({
+        type: "PUT",
+        url: `http://localhost:3000/article/update/${id}`,
+        data: {
+          transaction: true
+        },
+        success: function (res) {
+          console.log(res)
+          location.reload()
+        },
+        error: function () {
+          alert("error");
+        }
+      });
+    });
+  });
+</script>

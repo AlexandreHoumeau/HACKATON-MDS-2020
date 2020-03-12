@@ -1,7 +1,13 @@
 div.container {
   margin-top: 20px;
 }
+h1 {
+  font-family: 'Montserrat', sans-serif;
+}
 
+/* * {
+  font-family: 'Avenir LT W01 45 Book';
+} */
 div.ad-title {
   padding: 2em;
   background-size: cover;
@@ -44,4 +50,28 @@ div.carrousel-caption {
 
 span.rating i {
   color: goldenrod;
+}
+
+.card-body {
+  background-color: #aacbad;
+}
+
+.btn-nav {
+  width: 100%;
+  border: 2px solid #aacbad;
+  padding: 10px;
+  margin-right: 20px;
+  border-radius: 22px;
+  box-shadow: 5px 2px 10px #CBC8C8;
+}
+
+.avatar {
+  width: 65%;
+  height: 20%;
+  margin-top: -13px;
+}
+
+.img-article {
+  height: 350px;
+  width: auto;
 }

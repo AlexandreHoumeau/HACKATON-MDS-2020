@@ -1,0 +1,29 @@
+<h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Mes Reservations</h1>
+<div class="container-fluid" style="width: 90%">
+  <div class="row">
+    {{#if res}}
+    {{#each res}}
+    {{#unless type}}
+    {{#if transaction}}
+    <div class="col-md-4 tab-article mb-3">
+      <a data-toggle="modal" data-toggle="modal" data-target="#myModal">
+        <div class="card bg-light mb-3 ">
+          <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
+          <div class="card-body text-white">
+            <h4 class="card-title">
+              {{title}}
+            </h4>
+            <p>{{name}}</p>
+            <p class="card-text">
+              {{description}}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {{/if}}
+    {{/unless}}
+    {{/each}}
+    {{/if}}
+  </div>
+</div>
