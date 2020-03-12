@@ -1,6 +1,6 @@
 const Article = require('../../models/article')
-const JWT = require('../../jwt.js')
-const jwt = new JWT()
+// const JWT = require('../../jwt.js')
+// const jwt = new JWT()
 /**
  * Create
  * @class
@@ -15,7 +15,7 @@ class Delete {
    * middleware
    */
   middleware () {
-    this.app.delete('/article/delete/:id', jwt.express(), (req, res) => {
+    this.app.delete('/article/delete/:id', (req, res) => {
       try {
         const { id } = req.params
         this.ArticleModel.findByIdAndDelete(id).then(Article => {

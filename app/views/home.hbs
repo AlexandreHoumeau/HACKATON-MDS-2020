@@ -2,44 +2,78 @@
 <div class="container-fluid" style="width: 90%">
   <div class="row">
     {{#each res}}
+    {{#if type}}
     <div class="col-md-4 tab-article mb-3">
-      <a data-toggle="modal" data-toggle="modal" data-target="#myModal{{res}}">
+      <a>
         <div class="card bg-light mb-3 ">
-        <img
-          src="{{photo}}"
-          alt="Image de l'article" style="display: block;" class="image-fluid img-article"/>
-        <div class="card-body text-white">
-          <h4 class="card-title" >
-            {{title}}
-          </h4>
-          <p class="card-text">
-            {{description}}
-          </p>
+          <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
+          <div class="card-body text-white">
+            <img style="float: left; margin-top:10" class="avatar mr-1" src="{{logo}}" alt="">
+            <h4 class="card-title">
+              {{title}}
+            </h4>
+            <p class="card-text">
+              {{description}}
+            </p>
+          </div>
         </div>
-      </div>
       </a>
     </div>
+    {{/if}}
     {{/each}}
   </div>
 </div>
 
- <!-- Modal -->
-<div class="modal fade" id="myModal{{@res}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-            <img class="card-img-top" src="{{photo}}" alt="Card image cap">
-            {{{description}}}
-      </div>
-      <div class="modal-footer bg-light">
-        <button type="button" class="btn  btn-outline-secondary" data-dismiss="modal">Close</button>
-      </div>
+<h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Les Dons</h1>
+<div class="container-fluid" style="width: 90%">
+  <div class="row">
+    {{#each res}}
+    {{#unless type}}
+    {{#unless transaction}}
+    <div class="col-md-4 tab-article mb-3">
+      <a data-toggle="modal" data-toggle="modal" data-target="#myModal">
+        <div class="card bg-light mb-3 ">
+          <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
+          <div class="card-body text-white">
+            <h4 class="card-title">
+              {{title}}
+            </h4>
+            <p>{{name}}</p>
+            <p class="card-text">
+              {{description}}
+              <button id="{{id}}" style="float: right" class="btn">Je reserve</button>
+            </p>
+          </div>
+        </div>
+      </a>
     </div>
+    {{/unless}}
+    {{/unless}}
+    {{/each}}
   </div>
 </div>
+
+<script>
+  $(function () {
+    var submityesClicked;
+    //catch the click to buttons
+    $(':button').click(function () {
+      var id = $(this).attr('id')
+      console.log(id)
+      $.ajax({
+        type: "PUT",
+        url: `http://localhost:3000/article/update/${id}`,
+        data: {
+          transaction: true
+        },
+        success: function (res) {
+          console.log(res)
+          location.reload()
+        },
+        error: function () {
+          alert("error");
+        }
+      });
+    });
+  });
+</script>

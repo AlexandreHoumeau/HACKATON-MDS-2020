@@ -25,6 +25,14 @@ class Server {
     return article
   }
 
+  showArtice (id) {
+    const article = fetch(`http://localhost:3000/article/show/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        return data
+      })
+    return article
+  }
   /**
    * db connect
    * @return {Object} connect
@@ -69,6 +77,7 @@ class Server {
       layoutsDir: path.join(__dirname, '/views/layouts/'),
       partialsDir: path.join(__dirname, '/views/partials/')
     }))
+
     this.app.set('views', path.join(__dirname, '/views'))
     this.app.set('view engine', '.hbs')
     this.app.get('/home', async (_, res) => {
@@ -76,9 +85,16 @@ class Server {
       res.render('home', {res: articles})
     })
 
-    // this.app.get('/article/add', (_, res) => {
-    //   res.render('article-add')
+    // this.app.get('/article-show', (_, res) => {
+    //   res.render('show-article', {res: res})
     // })
+
+    this.app.post(`/article-show/:id`, async (request, response) => {
+      const id = request.params.id
+      const article = await this.showArtice(id)
+      response.render('show-article', {res: article})
+    })
+
     this.app.use(bodyParser.urlencoded({ 'extended': true }))
     this.app.use(bodyParser.json())
   }

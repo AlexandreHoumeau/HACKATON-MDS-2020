@@ -1,6 +1,6 @@
 const Article = require('../../models/article')
-const JWT = require('../../jwt.js')
-const jwt = new JWT()
+// const JWT = require('../../jwt.js')
+// const jwt = new JWT()
 /**
  * Create
  * @class
@@ -15,7 +15,7 @@ class Update {
    * middleware
    */
   middleware () {
-    this.app.put('/article/update/:id', jwt.express(), (req, res) => {
+    this.app.put('/article/update/:id', (req, res) => {
       const { id } = req.params
       const { body } = req
 

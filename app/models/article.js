@@ -11,7 +11,8 @@ const UserSchema = new mongoose.Schema({
   userId: ObjectId,
   photo: String,
   categories: String,
-  transaction: Boolean
+  transaction: Boolean,
+  type: String
 }, {
   collection: 'articles', 
   minimize: false, 
