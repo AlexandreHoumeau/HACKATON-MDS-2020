@@ -11,9 +11,11 @@
             <img style="float: left; margin-top:10" class="avatar mr-1" src="{{logo}}" alt="">
             <h4 class="card-title">
               {{title}}
+              
             </h4>
             <p class="card-text">
               {{description}}
+              
             </p>
           </div>
         </div>
@@ -39,7 +41,7 @@
           <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
           <div class="card-body text-white">
             <h4 class="card-title">
-              {{title}}
+              {{title}} disponible dès le {{{ dateFormat date_time "dddd, MMMM Do YYYY"}}}
             </h4>
             <p>{{name}}</p>
             <p class="card-text">
@@ -55,7 +57,7 @@
     {{/each}}
   </div>
 </div>
-
+<script src="handlebars-intl/dist/locale-data/fr.js"></script>
 <script>
   $(function () {
     var submityesClicked;

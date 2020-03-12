@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
   photo: String,
   categories: String,
   transaction: Boolean,
-  type: String
+  type: String,
+  date_time: Date
 }, {
   collection: 'articles', 
   minimize: false, 

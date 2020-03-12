@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const path = require('path')
-var fetch = require('node-fetch')
+const  fetch = require('node-fetch')
+const hbsIntl = require('handlebars-intl')
 
 /**
  * Server
@@ -72,6 +73,9 @@ class Server {
   middleware () {
     this.app.use('/public', express.static(path.join(__dirname, '../public')))
     this.app.engine('.hbs', exphbs({
+      helpers:{ 
+        dateFormat: require('handlebars-dateformat')
+      },
       extname: '.hbs',
       defaultLayout: 'main', 
       layoutsDir: path.join(__dirname, '/views/layouts/'),
