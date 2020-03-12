@@ -1,5 +1,5 @@
 <h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Mes Reservations</h1>
-<div class="container-fluid" style="width: 90%">
+<div class="container-fluid" style="width: 100%">
   <div class="row">
     {{#if res}}
     {{#each res}}
@@ -16,6 +16,7 @@
             <p class="card-text">
               {{description}}
             </p>
+            <button id="{{id}}" style="float: left;color:black;background-color:white;" class="btn">J'annule</button>
           </div>
         </div>
     </div>
@@ -25,3 +26,28 @@
     {{/if}}
   </div>
 </div>
+
+<script>
+  $(function () {
+    var submityesClicked;
+    //catch the click to buttons
+    $(':button').click(function () {
+      var id = $(this).attr('id')
+      console.log(id)
+      $.ajax({
+        type: "PUT",
+        url: `http://localhost:3000/article/update/${id}`,
+        data: {
+          transaction: false
+        },
+        success: function (res) {
+          console.log(res)
+          location.reload()
+        },
+        error: function () {
+          alert("error");
+        }
+      });
+    });
+  });
+</script>

@@ -1,14 +1,13 @@
 <h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Les demandes</h1>
-<div class="container-fluid" style="width: 90%">
+{{!-- <div class="container-fluid" style="width: 90%"> --}}
   <div class="row">
     {{#each res}}
     {{#if type}}
-    <div class="col-md-4 tab-article mb-5">
-      <a>
+      <div class="col-md-4 tab-article mb-3">
         <div class="card bg-light mb-3 ">
           <img src="{{photo}}" alt="Image de l'article" style="display: block;" class="image-fluid img-article" />
           <div class="card-body text-white">
-            <img style="float: left; margin-top:10" class="avatar mr-1" src="{{logo}}" alt="">
+            <img src="{{logo}}" style="float: left" class="avatar mr-1" alt="logo">
             <h4 class="card-title">
               {{title}}
             </h4>
@@ -17,18 +16,15 @@
             </p>
           </div>
         </div>
-      </a>
-    </div>
-    {{/if}}
+        </a>
       </div>
-      </a>
-    </div>
+    {{/if}}
     {{/each}}
   </div>
-</div>
+
 
 <h1 style="font-size: 23px;font-weight:700;text-transform:uppercase;margin: 30px 6vw">Les Dons</h1>
-<div class="container-fluid" style="width: 90%">
+{{!-- <div class="container-fluid" style="width: 90%"> --}}
   <div class="row">
     {{#each res}}
     {{#unless type}}
@@ -42,10 +38,10 @@
               {{title}}
             </h4>
             <p>{{name}}</p>
-            <p class="card-text">
+            <p class="card-text" style="">
               {{description}}
-              <button id="{{id}}" style="float: right; border: 1px solid black;color:white;background-color:black" class="btn">Je reserve</button>
             </p>
+            <button id="{{id}}" style="float: left;color:black;background-color:white;" class="btn">Je reserve</button>
           </div>
         </div>
       </a>
@@ -54,8 +50,8 @@
     {{/unless}}
     {{/each}}
   </div>
+{{!-- </div> --}}
 </div>
-
 <script>
   $(function () {
     var submityesClicked;
