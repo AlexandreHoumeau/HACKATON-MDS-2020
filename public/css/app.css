@@ -1,3 +1,10 @@
+body {
+  height: 100vh;
+}
+footer {
+  height : 20vh;
+}
+
 div.container {
   margin-top: 20px;
 }
@@ -74,4 +81,10 @@ span.rating i {
 .img-article {
   height: 350px;
   width: auto;
+}
+.green-color {
+  background-color: #aacbad;
+}
+.white-font {
+  color: #ffffff;
 }
